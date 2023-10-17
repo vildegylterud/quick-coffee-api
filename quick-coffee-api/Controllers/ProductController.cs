@@ -15,13 +15,11 @@ public class ProductController : ControllerBase
     
     private readonly IProductRepository _repository;
     private readonly IMapper _mapper;
-    private readonly IConfiguration _configuration;
 
-    public ProductController(ProductRepository repository, IMapper mapper,  IConfiguration configuration)
+    public ProductController(ProductRepository repository, IMapper mapper)
     {
         _repository = repository ?? throw new ArgumentNullException(nameof(repository));
         _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
-        _configuration = configuration;
     }
     
     [HttpGet("getAllProducts")]

@@ -12,7 +12,9 @@
         <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.12" />
         <PackageReference Include="Microsoft.EntityFrameworkCore.Abstractions" Version="7.0.12" />
         <PackageReference Include="Microsoft.EntityFrameworkCore.Cosmos" Version="7.0.12" />
+        <PackageReference Include="RbsTech.Azure.Configuration.Credentials" Version="1.0.61" />
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0"/>
+        <PackageReference Include="System.Configuration.ConfigurationManager" Version="8.0.0-rc.2.23479.6" />
     </ItemGroup>
 
 </Project>
