@@ -4,5 +4,5 @@ namespace quick_coffee_api.Services.ProductService;
 
 public interface IProductRepository
 {
-    Task<ProductDocument?> GetProductAsync(string productId);
+    Task<List<ProductDocument>> GetAllProductsAsync(); 
 }
