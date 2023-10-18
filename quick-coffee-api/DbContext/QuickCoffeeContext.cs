@@ -18,21 +18,21 @@ public class QuickCoffeeContext : DbContext
     /// Gets or sets the products collection.
     /// </summary>
     public DbSet<ProductDocument> Products { get; set; }
-    public DbSet<ProductTypeDocument> ProductTypes { get; set; }
-    public DbSet<ExtraProductDocument> ExtraProducts { get; set; }
+    //public DbSet<ProductTypeDocument> ProductTypes { get; set; }
+    //public DbSet<ExtraProductDocument> ExtraProducts { get; set; }
 
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.HasManualThroughput(600);
         
+        //Products
         modelBuilder.Entity<ProductDocument>()
             .HasNoDiscriminator()
             .ToContainer(nameof(Products))
             .HasPartitionKey(product => product.ProductType)
             .HasKey(product => new { product.Id });
         
-        //Products
        /** modelBuilder.Entity<ProductDocument>()
             .HasNoDiscriminator().Property(p => p.ProductType).ToJsonProperty("ProductType");
         modelBuilder.Entity<ProductDocument>().HasPartitionKey(product => product.ProductType)

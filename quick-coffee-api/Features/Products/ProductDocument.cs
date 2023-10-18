@@ -10,6 +10,7 @@ public class ProductDocument
     public string Price { get; set; }
     public string ImgUrl { get; set; }
     public ProductTypeDocument ProductType { get; set; }
+    
     public List<ExtraProductDocument> ExtraProduct { get; set; }
         = new List<ExtraProductDocument>();
 
@@ -24,7 +25,7 @@ public class ProductDocument
     /// </summary>
     /// <param name="obj">The object to compare to.</param>
     /// <returns>A value indicating whether the unique identifiers match.</returns>
-    public override bool Equals(object obj) =>
+    public override bool Equals(object? obj) =>
         obj is ProductDocument productDocument && productDocument.Id == Id;
     
 }

@@ -1,5 +1,3 @@
-
-using Microsoft.Azure.Cosmos;
 using quick_coffee_api;
 
 
@@ -11,6 +9,7 @@ public static class Program
     /// <summary>
     /// Main method.
     /// </summary>
+    
     /// <param name="args">Arguments passed in.</param>
     public static void Main(string[] args) =>
         CreateHostBuilder(args).Build().Run();

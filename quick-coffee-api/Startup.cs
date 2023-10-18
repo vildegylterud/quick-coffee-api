@@ -1,4 +1,6 @@
+using System.Reflection;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.Extensions.Options;
 using quick_coffee_api.DbContext;
 using quick_coffee_api.Services.ProductService;
@@ -32,6 +34,7 @@ public class Startup
         services.AddServerSideBlazor();
         services.Configure<CosmosSettings>(
             Configuration.GetSection(nameof(CosmosSettings)));
+        
         services.AddDbContextFactory<QuickCoffeeContext>(
             (IServiceProvider sp, DbContextOptionsBuilder opts) =>
             {
@@ -45,6 +48,7 @@ public class Startup
                     cosmosSettings.DatabaseName);
             });
         services.AddScoped<IProductService, ProductService>();
+        
     }
 
     /// <summary>
