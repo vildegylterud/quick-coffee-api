@@ -30,7 +30,7 @@ public class QuickCoffeeContext : DbContext
             .HasNoDiscriminator()
             .ToContainer(nameof(Products))
             .HasPartitionKey(product => product.ProductType)
-            .HasKey(product => new { product.Id, product.ProductType });
+            .HasKey(product => new { product.Id });
         
         //Products
        /** modelBuilder.Entity<ProductDocument>()

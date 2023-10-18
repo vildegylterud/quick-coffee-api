@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using quick_coffee_api.DbContext;
+using quick_coffee_api.Services.ProductService;
 
 
 namespace quick_coffee_api;
@@ -17,7 +18,7 @@ public class Startup
     /// Gets t configuration instance.
     /// </summary>
     public IConfiguration Configuration { get; }
-
+    
     /// <summary>
     /// Select the services used by your app.
     /// </summary>
@@ -43,6 +44,7 @@ public class Startup
                     cosmosSettings.AccessKey,
                     cosmosSettings.DatabaseName);
             });
+        services.AddScoped<IProductService, ProductService>();
     }
 
     /// <summary>
