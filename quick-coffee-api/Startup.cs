@@ -31,7 +31,7 @@ public class Startup
         services.AddServerSideBlazor();
         services.Configure<CosmosSettings>(
             Configuration.GetSection(nameof(CosmosSettings)));
-        services.AddDbContextFactory<QuickQoffeeContext>(
+        services.AddDbContextFactory<QuickCoffeeContext>(
             (IServiceProvider sp, DbContextOptionsBuilder opts) =>
             {
                 var cosmosSettings = sp
@@ -55,7 +55,7 @@ public class Startup
     public void Configure(
         IApplicationBuilder app,
         IWebHostEnvironment env,
-        IDbContextFactory<QuickQoffeeContext> factory,
+        IDbContextFactory<QuickCoffeeContext> factory,
         IOptions<CosmosSettings> cs)
     {
         if (env.IsDevelopment())

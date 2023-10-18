@@ -5,7 +5,7 @@ using quick_coffee_api.Entities;
 namespace quick_coffee_api.DbContext;
 using Microsoft.EntityFrameworkCore;
 
-public class QuickQoffeeContext : DbContext
+public class QuickCoffeeContext : DbContext
 {
     
     
