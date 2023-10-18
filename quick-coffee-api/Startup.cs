@@ -28,7 +28,7 @@ public class Startup
     public void ConfigureServices(IServiceCollection services)
     {
         services.AddRazorPages();
-        services.AddControllers();
+        services.AddControllersWithViews(); //changed to views 
         services.AddEndpointsApiExplorer();
         services.AddSwaggerGen();
         services.AddServerSideBlazor();
@@ -46,8 +46,11 @@ public class Startup
                     cosmosSettings.EndPoint,
                     cosmosSettings.AccessKey,
                     cosmosSettings.DatabaseName);
+                
             });
         services.AddScoped<IProductService, ProductService>();
+        
+        
         
     }
 
@@ -83,11 +86,13 @@ public class Startup
         app.UseStaticFiles();
 
         app.UseRouting();
+        /**
         app.UseAuthorization();
         app.UseEndpoints(endpoints =>
         {
             endpoints.MapBlazorHub();
             endpoints.MapFallbackToPage("/_Host");
-        });
+        }); 
+        */
     }
 }

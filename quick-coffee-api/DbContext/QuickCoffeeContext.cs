@@ -32,13 +32,9 @@ public class QuickCoffeeContext : DbContext
             .ToContainer(nameof(Products))
             .HasPartitionKey(product => product.ProductType)
             .HasKey(product => new { product.Id });
-        
-       /** modelBuilder.Entity<ProductDocument>()
-            .HasNoDiscriminator().Property(p => p.ProductType).ToJsonProperty("ProductType");
-        modelBuilder.Entity<ProductDocument>().HasPartitionKey(product => product.ProductType)
-            .ToContainer("Products"); */
-        
+
         //ProductTypes
+        
     }
     
     
