@@ -11,8 +11,4 @@ public class ProductService : IProductService
         _context = context;
     }
 
-    public Task GetAllProductsAsync()
-    {
-        return null;
-    }
 }

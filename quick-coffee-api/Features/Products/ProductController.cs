@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using quick_coffee_api.Features;
 using quick_coffee_api.Services.ProductService;
 using quick_coffee_api.Models;
 
@@ -15,12 +16,4 @@ public class ProductController
         _productService = productService;
     }
     
-    [HttpGet("getAllProducts")]
-    public async Task<ActionResult<List<ProductDto>>> GetAllProducts()
-    {
-        var products = await _productService.GetAllProductsAsync();
-        var productDto = _productService.Map<List<ProductDto>>(products);
-
-        return Ok(productDto);
-    }
 }
