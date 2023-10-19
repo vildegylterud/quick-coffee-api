@@ -1,14 +1,22 @@
+using Microsoft.EntityFrameworkCore;
 using quick_coffee_api.DbContext;
+using quick_coffee_api.Entities;
 
 namespace quick_coffee_api.Services.ProductService;
 
 public class ProductService : IProductService
 {
-    private readonly QuickCoffeeContext _context;
+    private readonly IDbContextFactory<QuickCoffeeContext> _contextFactory;
 
-    public ProductService(QuickCoffeeContext context)
+    public ProductService(IDbContextFactory<QuickCoffeeContext> contextFactory)
     {
-        _context = context;
+        this._contextFactory = contextFactory ?? throw new ArgumentNullException(nameof(contextFactory));
     }
+
+    public async Task<List<ProductDocument>> getAllProductsAsync()
+    {
+    }
+    
+
 
 }
