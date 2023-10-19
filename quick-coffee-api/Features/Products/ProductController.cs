@@ -1,13 +1,8 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using quick_coffee_api.DbContext;
-using quick_coffee_api.Features;
-using quick_coffee_api.Services.ProductService;
-using quick_coffee_api.Models;
+using quick_coffee_api.Entities;
 
-
-namespace quick_coffee_api.Controllers;
+namespace quick_coffee_api.Features.Products;
 
 [Microsoft.AspNetCore.Components.Route("api/products")]
 [ApiController]
@@ -16,18 +11,19 @@ public class ProductController : ControllerBase
 {
     private readonly IProductService _productService;
 
-    public ProductController(IProductService _productService)
+    public ProductController(IProductService productService)
     {
-        _productService = _productService ?? throw new ArgumentNullException(nameof(_productService));
-;
+        _productService = productService ?? throw new ArgumentNullException(nameof(productService));
+        ;
     }
-    
+
     [HttpGet("getAllProducts")]
-    public async Task<ActionResult<List<ProductDto>>> GetAllProducts()
+    public async Task<List<ProductDocument>> GetAllProducts()
     {
         var products = await _productService.GetAllProductsAsync();
-        return products; 
+        return products;
     }
-    
+
+}
 
 

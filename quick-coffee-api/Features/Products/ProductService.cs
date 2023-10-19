@@ -1,8 +1,9 @@
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using quick_coffee_api.DbContext;
 using quick_coffee_api.Entities;
 
-namespace quick_coffee_api.Services.ProductService;
+namespace quick_coffee_api.Features.Products;
 
 public class ProductService : IProductService
 {
@@ -15,6 +16,7 @@ public class ProductService : IProductService
 
     public async Task<List<ProductDocument>> getAllProductsAsync()
     {
+        return null;
     }
     
 

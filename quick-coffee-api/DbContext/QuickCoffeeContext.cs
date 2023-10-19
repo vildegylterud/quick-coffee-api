@@ -1,8 +1,6 @@
 using System.Net;
 using Microsoft.Azure.Cosmos;
 using quick_coffee_api.Entities;
-using quick_coffee_api.Features.ExtraProducts;
-using quick_coffee_api.Features.ProductTypes;
 
 namespace quick_coffee_api.DbContext;
 using Microsoft.EntityFrameworkCore;
@@ -13,10 +11,6 @@ public class QuickCoffeeContext : DbContext
         : base(options)
     {
     }
-    
-    /// <summary>
-    /// Gets or sets the products collection.
-    /// </summary>
     public DbSet<ProductDocument> Products { get; set; }
     //public DbSet<ProductTypeDocument> ProductTypes { get; set; }
     //public DbSet<ExtraProductDocument> ExtraProducts { get; set; }
