@@ -1,10 +1,9 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using quick_coffee_api.Entities;
 
 namespace quick_coffee_api.Features.Products;
 
-[Microsoft.AspNetCore.Components.Route("api/products")]
+[Route("api/products")]
 [ApiController]
 [Authorize]
 public class ProductController : ControllerBase
@@ -14,7 +13,6 @@ public class ProductController : ControllerBase
     public ProductController(IProductService productService)
     {
         _productService = productService ?? throw new ArgumentNullException(nameof(productService));
-        ;
     }
 
     [HttpGet("getAllProducts")]

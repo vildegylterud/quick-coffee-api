@@ -1,5 +1,6 @@
-using System.Reflection;
+using Microsoft.Azure.Cosmos;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Cosmos.Storage.Internal;
 using Microsoft.Extensions.Options;
 using quick_coffee_api.DbContext;
 using quick_coffee_api.Features.Products;
@@ -13,27 +14,25 @@ public class Startup
     {
         Configuration = configuration;
     }
-    
     public IConfiguration Configuration { get; }
     
     public void ConfigureServices(IServiceCollection services)
+    
     {
+
+        services.AddDbContextFactory<QuickCoffeeContext>(options =>
+            options.UseCosmos(
+                Configuration["CosmosDb:Endpoint"],
+                Configuration["CosmosDb:AccessKey"],
+                Configuration["CosmosDb:DatabaseName"]));
+        
+        services.AddTransient<IProductService, ProductService>();
         services.AddControllers(); 
-        //services.AddRazorPages();
-        services.AddScoped<IProductService, ProductService>();
+        services.AddRazorPages();
         services.AddEndpointsApiExplorer();
         services.AddSwaggerGen();
         services.AddServerSideBlazor();
-        
-        services.Configure<CosmosSettings>(
-            Configuration.GetSection(nameof(CosmosSettings)));
-        
-    
-        services.AddDbContext<QuickCoffeeContext>(options =>
-            options.UseCosmos(
-                Configuration["CosmosSettings:Endpoint"],
-                Configuration["CosmosSettings:AccessKey"],
-                Configuration["CosmosSettings:DatabaseName"]));
+
     }
     
     public void Configure(
@@ -56,7 +55,7 @@ public class Startup
             app.UseHsts();
         }
         
-        //app.MapControllers(); //todo får error ved forsøk på bruk av denne
+        //app.MapControllers(); 
         app.UseHttpsRedirection();
         app.UseStaticFiles();
 

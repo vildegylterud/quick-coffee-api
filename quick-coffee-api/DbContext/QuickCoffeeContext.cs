@@ -1,6 +1,4 @@
-using System.Net;
-using Microsoft.Azure.Cosmos;
-using quick_coffee_api.Entities;
+using quick_coffee_api.Features.Products;
 
 namespace quick_coffee_api.DbContext;
 using Microsoft.EntityFrameworkCore;
@@ -11,10 +9,8 @@ public class QuickCoffeeContext : DbContext
         : base(options)
     {
     }
+    
     public DbSet<ProductDocument> Products { get; set; }
-    //public DbSet<ProductTypeDocument> ProductTypes { get; set; }
-    //public DbSet<ExtraProductDocument> ExtraProducts { get; set; }
-
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -26,10 +22,8 @@ public class QuickCoffeeContext : DbContext
             .ToContainer(nameof(Products))
             .HasPartitionKey(product => product.ProductType)
             .HasKey(product => new { product.Id });
-
-        //ProductTypes
         
+        modelBuilder.HasDefaultContainer(nameof(Products));
+
     }
-    
-    
 }

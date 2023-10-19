@@ -1,4 +1,3 @@
-using quick_coffee_api.Entities;
 
 namespace quick_coffee_api.Features.Products;
 

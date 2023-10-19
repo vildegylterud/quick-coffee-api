@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using quick_coffee_api.DbContext;
-using quick_coffee_api.Entities;
 
 namespace quick_coffee_api.Features.Products;
 
@@ -11,14 +10,11 @@ public class ProductService : IProductService
 
     public ProductService(IDbContextFactory<QuickCoffeeContext> contextFactory)
     {
-        this._contextFactory = contextFactory ?? throw new ArgumentNullException(nameof(contextFactory));
+        _contextFactory = contextFactory ?? throw new ArgumentNullException(nameof(contextFactory));
     }
-
-    public async Task<List<ProductDocument>> getAllProductsAsync()
+    public async Task<List<ProductDocument>> GetAllProductsAsync()
     {
-        return null;
+        using var context = _contextFactory.CreateDbContext();
+        return await context.Products.ToListAsync();
     }
-    
-
-
 }

@@ -1,11 +1,11 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using quick_coffee_api.Features.ExtraProducts;
-using quick_coffee_api.Features.ProductTypes;
 
-namespace quick_coffee_api.Entities;
+namespace quick_coffee_api.Features.Products;
 public class ProductDocument
 {
+    
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.None)]
     public string Id { get; set; }
