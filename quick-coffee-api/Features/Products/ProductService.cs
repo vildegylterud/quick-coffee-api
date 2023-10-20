@@ -1,4 +1,3 @@
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using quick_coffee_api.DbContext;
 
@@ -17,4 +16,5 @@ public class ProductService : IProductService
         using var context = _contextFactory.CreateDbContext();
         return await context.Products.ToListAsync();
     }
+    
 }

@@ -17,8 +17,9 @@ public class Startup
     public IConfiguration Configuration { get; }
     
     public void ConfigureServices(IServiceCollection services)
-    
+
     {
+        
 
         services.AddDbContextFactory<QuickCoffeeContext>(options =>
             options.UseCosmos(

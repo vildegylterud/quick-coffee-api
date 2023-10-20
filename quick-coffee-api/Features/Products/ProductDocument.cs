@@ -17,11 +17,4 @@ public class ProductDocument
     
     public List<ExtraProductDocument> ExtraProduct { get; set; }
         = new List<ExtraProductDocument>();
-    
-    public override int GetHashCode() => Id.GetHashCode();
-
-  
-    public override bool Equals(object? obj) =>
-        obj is ProductDocument productDocument && productDocument.Id == Id;
-    
 }
