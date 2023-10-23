@@ -19,8 +19,6 @@ public class Startup
     public void ConfigureServices(IServiceCollection services)
 
     {
-        
-
         services.AddDbContextFactory<QuickCoffeeContext>(options =>
             options.UseCosmos(
                 Configuration["CosmosDb:Endpoint"],
@@ -62,7 +60,7 @@ public class Startup
 
         app.UseRouting();
         
-        app.UseAuthorization();
+        //app.UseAuthorization();
         app.UseEndpoints(endpoints =>
         {
             endpoints.MapControllers();

@@ -18,10 +18,11 @@ public class QuickCoffeeContext : DbContext
         
         //Products
         modelBuilder.Entity<ProductDocument>()
-            .HasNoDiscriminator()
-            .ToContainer(nameof(Products))
-            .HasPartitionKey(product => product.ProductType)
-            .HasKey(product => new { product.Id });
+            .HasNoDiscriminator().Property(p => p.Pk).ToJsonProperty(nameof(ProductDocument.Pk).ToLower());
+        modelBuilder.Entity<ProductDocument>()
+            .HasNoDiscriminator().Property(p => p.Id).ToJsonProperty(nameof(ProductDocument.Id).ToLower());
+        modelBuilder.Entity<ProductDocument>().HasPartitionKey(product => product.Pk)
+            .ToContainer(nameof(Products));
         
         modelBuilder.HasDefaultContainer(nameof(Products));
 

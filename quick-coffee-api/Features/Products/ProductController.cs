@@ -1,11 +1,11 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using quick_coffee_api.Features.Products.Models;
 
 namespace quick_coffee_api.Features.Products;
 
 [Route("api/products")]
 [ApiController]
-[Authorize]
 public class ProductController : ControllerBase
 {
     private readonly IProductService _productService;
@@ -21,7 +21,6 @@ public class ProductController : ControllerBase
         var products = await _productService.GetAllProductsAsync();
         return products;
     }
-
 }
 
 
