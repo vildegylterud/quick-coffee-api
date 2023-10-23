@@ -31,6 +31,7 @@ public class Startup
         services.AddEndpointsApiExplorer();
         services.AddSwaggerGen();
         services.AddServerSideBlazor();
+        services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
     }
     
