@@ -20,7 +20,6 @@ public class ProductService : IProductService
     
     public async Task<List<ProductDocument>> GetAllProducts()
     {
-        //using var context = _contextFactory.CreateDbContext();
         var products = await _context.Products.ToListAsync();
         return products;
     }
