@@ -8,14 +8,11 @@ namespace quick_coffee_api.Features.Products;
 public class ProductService : IProductService
 {
     private readonly QuickCoffeeContext _context;
-    private readonly IDbContextFactory<QuickCoffeeContext> _contextFactory;
 
-    //public ProductService(IDbContextFactory<QuickCoffeeContext> contextFactory)
     public ProductService(QuickCoffeeContext context)
 
     {
         _context = context;
-        //_contextFactory = contextFactory ?? throw new ArgumentNullException(nameof(contextFactory));
     }
     
     public async Task<List<ProductDocument>> GetAllProducts()

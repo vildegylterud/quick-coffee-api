@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore.Cosmos.Storage.Internal;
 using Microsoft.Extensions.Options;
 using quick_coffee_api.DbContext;
 using quick_coffee_api.Features.Products;
+using quick_coffee_api.Features.ProductTypes;
 
 
 namespace quick_coffee_api;
@@ -25,7 +26,9 @@ public class Startup
                 Configuration["CosmosDb:AccessKey"],
                 Configuration["CosmosDb:DatabaseName"]));
         
-        services.AddTransient<IProductService, ProductService>();
+        services.AddScoped<IProductService, ProductService>();
+        services.AddScoped<IProductTypeService, ProductTypeService>();
+
         services.AddControllers(); 
         services.AddRazorPages();
         services.AddEndpointsApiExplorer();
@@ -38,8 +41,7 @@ public class Startup
     public void Configure(
         IApplicationBuilder app,
         IWebHostEnvironment env,
-        IDbContextFactory<QuickCoffeeContext> factory,
-        IOptions<CosmosSettings> cs)
+        IDbContextFactory<QuickCoffeeContext> factory)
     {
         if (env.IsDevelopment())
         {
