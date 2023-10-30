@@ -60,7 +60,6 @@ public class ProductService : IProductService
         {
             Debug.WriteLine(@"\tERROR {0}", ex.Message);
         }
-        
     }
 
     public async Task<ProductDocument> UpdateProduct(ProductDocument product)

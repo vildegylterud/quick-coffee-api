@@ -29,6 +29,15 @@ public class ProductTypesController : ControllerBase
         return Ok(_mapper.Map<IEnumerable<ProductTypeDto>>(productTypes));
     }
 
+    [HttpGet]
+        [Route("{productTypeId}")]
+        public async Task<IActionResult> GetProductType(Guid productTypeId)
+        {
+            var productType = await _productTypeService.GetProductType(productTypeId);
+            return Ok(_mapper.Map<ProductTypeDto>(productType));
+        }
+        
+    
     
     [HttpPost]
     public async Task<IActionResult> CreateProductType(ProductTypeDto productTypeDto)
@@ -36,16 +45,42 @@ public class ProductTypesController : ControllerBase
         try
         {
             var productType = _mapper.Map<ProductTypeDocument>(productTypeDto);
-            
             await _productTypeService.CreateProductType(productType);
             return Ok(productType);
-            //Todo check if product exist?
+
         }
         catch(Exception e)
         {
             return StatusCode(500, e.Message);
         }
     }
-    
-    
+
+    [HttpDelete]
+    [Route("{productTypeId}")]
+    public async Task<IActionResult> DeleteProductType(Guid productTypeId)
+    {
+        await _productTypeService.DeleteProductType(productTypeId);
+        return NoContent();
+    }
+
+    [HttpPut]
+    public async Task<IActionResult> UpdateProductType(ProductTypeDto productTypeDto)
+    {
+        try
+        {
+            var productType = _mapper.Map<ProductTypeDocument>(productTypeDto);
+            
+            var updatedProductType = await _productTypeService.UpdateProductType(productType);
+            return Ok(_mapper.Map<ProductTypeDto>(updatedProductType));
+        }
+        catch(Exception e)
+        {
+            return StatusCode(500, e.Message);
+        } 
+    }
 }
+
+
+
+    
+    

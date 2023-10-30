@@ -42,10 +42,9 @@ public class ProductsController : ControllerBase
         try
         {
             var product = _mapper.Map<ProductDocument>(productDto);
-            
             await _productService.CreateProduct(product);
             return Ok(product);
-            //Todo check if product exist?
+
         }
         catch(Exception e)
         {

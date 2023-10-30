@@ -4,5 +4,7 @@ public interface IProductTypeService
 {
     Task CreateProductType(ProductTypeDocument productType);
     Task<List<ProductTypeDocument>> GetAllProductTypes();
-
+    Task<ProductTypeDocument> GetProductType(Guid productId);
+    Task<ProductTypeDocument> UpdateProductType(ProductTypeDocument productType);
+    Task DeleteProductType(Guid productTypeId);
 }
