@@ -7,7 +7,7 @@ using quick_coffee_api.Features.ProductTypes.Models;
 namespace quick_coffee_api.Features.ProductTypes;
 
 
-[Route("api/productTypes")]
+[Route("api/producttypes")]
 [ApiController]
 public class ProductTypesController : ControllerBase
 {
@@ -23,7 +23,7 @@ public class ProductTypesController : ControllerBase
     }
     
     [HttpGet]
-    public async Task<IActionResult> GetAllProducts()
+    public async Task<IActionResult> GetAllProductTypes()
     {
         var productTypes = await _productTypeService.GetAllProductTypes();
         return Ok(_mapper.Map<IEnumerable<ProductTypeDto>>(productTypes));

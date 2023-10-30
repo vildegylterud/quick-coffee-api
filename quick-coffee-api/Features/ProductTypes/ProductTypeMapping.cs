@@ -10,7 +10,6 @@ namespace quick_coffee_api.Features.ProductTypes;
         {
             CreateMap<ProductTypeDto, ProductTypeDocument>()
                 .ForMember(dest => dest.Pk, opt => opt.Ignore())
-                //.ForMember(dest => dest.ExtraProduct, opt => opt.MapFrom(src => src.ExtraProduct))
                 .ReverseMap();
         
         }
