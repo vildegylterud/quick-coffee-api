@@ -1,3 +1,4 @@
+using quick_coffee_api.Features.ExtraProducts;
 using quick_coffee_api.Features.Products;
 using quick_coffee_api.Features.ProductTypes;
 
@@ -13,6 +14,8 @@ public class QuickCoffeeContext : DbContext
     
     public DbSet<ProductDocument> Products { get; set; } 
     public DbSet<ProductTypeDocument> ProductTypes { get; set; }
+    public DbSet<ExtraProductDocument> ExtraProducts { get; set; }
+
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -34,9 +37,15 @@ public class QuickCoffeeContext : DbContext
         modelBuilder.Entity<ProductTypeDocument>().HasPartitionKey(productType => productType.Pk)
             .ToContainer(nameof(ProductTypes));
 
+        //ProductTypes
+        modelBuilder.Entity<ExtraProductDocument>()
+            .HasNoDiscriminator().Property(p => p.Pk).ToJsonProperty(nameof(ExtraProductDocument.Pk).ToLower());
+        modelBuilder.Entity<ExtraProductDocument>()
+            .HasNoDiscriminator().Property(p => p.Id).ToJsonProperty("id");
+        modelBuilder.Entity<ExtraProductDocument>().HasPartitionKey(extraProduct => extraProduct.Pk)
+            .ToContainer(nameof(ExtraProducts));
+
         
-        
-        //modelBuilder.HasDefaultContainer(nameof(Products));
 
     }
 }

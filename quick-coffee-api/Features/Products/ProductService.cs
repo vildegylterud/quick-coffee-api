@@ -75,6 +75,7 @@ public class ProductService : IProductService
             existingProduct.Name = product.Name;
             existingProduct.Price = product.Price;
             existingProduct.ProductTypeId = product.ProductTypeId;
+            existingProduct.ImageUrl = product.ImageUrl;
             existingProduct.Description = product.Description;
             existingProduct.ExtraProducts = product.ExtraProducts;
             await _context.SaveChangesAsync();
