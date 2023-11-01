@@ -1,4 +1,6 @@
+using quick_coffee_api.Features.ExtraProducts;
 using quick_coffee_api.Features.Products;
+using quick_coffee_api.Features.ProductTypes;
 
 namespace quick_coffee_api.DbContext;
 using Microsoft.EntityFrameworkCore;
@@ -10,7 +12,10 @@ public class QuickCoffeeContext : DbContext
     {
     }
     
-    public DbSet<ProductDocument> Products { get; set; }
+    public DbSet<ProductDocument> Products { get; set; } 
+    public DbSet<ProductTypeDocument> ProductTypes { get; set; }
+    public DbSet<ExtraProductDocument> ExtraProducts { get; set; }
+
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -18,12 +23,29 @@ public class QuickCoffeeContext : DbContext
         
         //Products
         modelBuilder.Entity<ProductDocument>()
-            .HasNoDiscriminator()
-            .ToContainer(nameof(Products))
-            .HasPartitionKey(product => product.ProductType)
-            .HasKey(product => new { product.Id });
+            .HasNoDiscriminator().Property(p => p.Pk).ToJsonProperty(nameof(ProductDocument.Pk).ToLower());
+        modelBuilder.Entity<ProductDocument>()
+            .HasNoDiscriminator().Property(p => p.Id).ToJsonProperty("id");
+        modelBuilder.Entity<ProductDocument>().HasPartitionKey(product => product.Pk)
+            .ToContainer(nameof(Products));
         
-        modelBuilder.HasDefaultContainer(nameof(Products));
+        //ProductTypes
+        modelBuilder.Entity<ProductTypeDocument>()
+            .HasNoDiscriminator().Property(p => p.Pk).ToJsonProperty(nameof(ProductTypeDocument.Pk).ToLower());
+        modelBuilder.Entity<ProductTypeDocument>()
+            .HasNoDiscriminator().Property(p => p.Id).ToJsonProperty("id");
+        modelBuilder.Entity<ProductTypeDocument>().HasPartitionKey(productType => productType.Pk)
+            .ToContainer(nameof(ProductTypes));
+
+        //ProductTypes
+        modelBuilder.Entity<ExtraProductDocument>()
+            .HasNoDiscriminator().Property(p => p.Pk).ToJsonProperty(nameof(ExtraProductDocument.Pk).ToLower());
+        modelBuilder.Entity<ExtraProductDocument>()
+            .HasNoDiscriminator().Property(p => p.Id).ToJsonProperty("id");
+        modelBuilder.Entity<ExtraProductDocument>().HasPartitionKey(extraProduct => extraProduct.Pk)
+            .ToContainer(nameof(ExtraProducts));
+
+        
 
     }
 }

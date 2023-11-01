@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore.Cosmos.Storage.Internal;
 using Microsoft.Extensions.Options;
 using quick_coffee_api.DbContext;
 using quick_coffee_api.Features.Products;
+using quick_coffee_api.Features.ProductTypes;
 
 
 namespace quick_coffee_api;
@@ -19,28 +20,28 @@ public class Startup
     public void ConfigureServices(IServiceCollection services)
 
     {
-        
-
         services.AddDbContextFactory<QuickCoffeeContext>(options =>
             options.UseCosmos(
                 Configuration["CosmosDb:Endpoint"],
                 Configuration["CosmosDb:AccessKey"],
                 Configuration["CosmosDb:DatabaseName"]));
         
-        services.AddTransient<IProductService, ProductService>();
+        services.AddScoped<IProductService, ProductService>();
+        services.AddScoped<IProductTypeService, ProductTypeService>();
+
         services.AddControllers(); 
         services.AddRazorPages();
         services.AddEndpointsApiExplorer();
         services.AddSwaggerGen();
         services.AddServerSideBlazor();
+        services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
     }
     
     public void Configure(
         IApplicationBuilder app,
         IWebHostEnvironment env,
-        IDbContextFactory<QuickCoffeeContext> factory,
-        IOptions<CosmosSettings> cs)
+        IDbContextFactory<QuickCoffeeContext> factory)
     {
         if (env.IsDevelopment())
         {
@@ -62,7 +63,7 @@ public class Startup
 
         app.UseRouting();
         
-        app.UseAuthorization();
+        //app.UseAuthorization();
         app.UseEndpoints(endpoints =>
         {
             endpoints.MapControllers();
